@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <title>Impact Force – Consultoria Salesforce</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Consultoria Salesforce para empresas B2B em Portugal. Implementação, optimização e suporte contínuo para tirar mais partido do teu Salesforce.">
+  <style>
+    :root {
+      --cor-primaria: #1F4FFF;
+      --cor-primaria-escura: #1638B8;
+      --cor-secundaria: #00C7A5;
+      --cor-fundo: #0b1020;
+      --cor-texto: #f9fafb;
+      --cor-texto-sec: #cbd5f5;
+      --cor-card: #12172a;
+      --cor-borda: #1f2937;
+      --fonte: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--fonte);
+      background: radial-gradient(circle at top, #141b3a 0, #050816 50%, #020617 100%);
+      color: var(--cor-texto);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      border-bottom: 1px solid var(--cor-borda);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(5, 8, 22, 0.88);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: conic-gradient(from 140deg, #00C7A5, #1F4FFF, #7C3AED, #00C7A5);
+      box-shadow: 0 0 24px rgba(31, 79, 255, 0.6);
+    }
+
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--cor-texto-sec);
+    }
+
+    .nav-links a:hover {
+      color: var(--cor-texto);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.75rem 1.4rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+      color: #0b1020;
+      box-shadow: 0 15px 40px rgba(15, 23, 42, 0.6);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, var(--cor-primaria-escura), var(--cor-secundaria));
+    }
+
+    .btn-outline {
+      border: 1px solid var(--cor-borda);
+      background: transparent;
+      color: var(--cor-texto-sec);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cor-secundaria);
+      color: var(--cor-texto);
+    }
+
+    main {
+      padding-bottom: 4rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--cor-secundaria);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 4vw, 3.1rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--cor-texto-sec);
+      font-size: 1rem;
+      max-width: 34rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--cor-texto-sec);
+    }
+
+    .hero-meta strong {
+      color: var(--cor-texto);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #1d243f 0, #080c1c 50%);
+      border-radius: 18px;
+      padding: 1.8rem 1.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.85);
+    }
+
+    .hero-card h2 {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+      font-size: 0.85rem;
+      color: var(--cor-texto-sec);
+    }
+
+    .hero-card li::before {
+      content: "•";
+      color: var(--cor-secundaria);
+      margin-right: 0.4rem;
+    }
+
+    /* Secções genéricas */
+    section {
+      padding: 3rem 0 0;
+    }
+
+    h2.section-title {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .muted {
+      color: var(--cor-texto-sec);
+      font-size: 0.95rem;
+    }
+
+    /* Logos / prova social */
+    .logos-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      align-items: center;
+    }
+
+    .logo-pill {
+      border-radius: 999px;
+      border: 1px dashed var(--cor-borda);
+      padding: 0.7rem 1.2rem;
+      font-size: 0.8rem;
+      color: var(--cor-texto-sec);
+    }
+
+    /* Grades */
+    .grid-3 {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--cor-card);
+      border-radius: 14px;
+      padding: 1.5rem;
+      border: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--cor-texto-sec);
+    }
+
+    /* FAQ */
+    details {
+      background: var(--cor-card);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--cor-borda);
+    }
+
+    details + details {
+      margin-top: 0.6rem;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      float: right;
+      opacity: 0.7;
+    }
+
+    details[open] summary::after {
+      content: "–";
+    }
+
+    details p {
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--cor-texto-sec);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 4rem;
+      border-top: 1px solid var(--cor-borda);
+      padding: 1.5rem 0 2rem;
+      font-size: 0.8rem;
+      color: var(--cor-texto-sec);
+    }
+
+    footer .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    /* Responsivo */
+    @media (max-width: 880px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 3rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <div class="brand-name">Impact Force</div>
+    </div>
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#processo">Como trabalhamos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#contacto" class="btn btn-outline">Marcar sessão</a>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero" id="topo">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Consultoria Salesforce em Portugal</p>
+        <h1>Mais retorno do teu Salesforce, menos complicação diária.</h1>
+        <p>
+          A Impact Force ajuda equipas B2B a implementar e optimizar Salesforce para que as vendas,
+          o serviço ao cliente e as operações trabalhem em conjunto com clareza e previsibilidade.
+        </p>
+        <div class="hero-actions">
+          <a href="#contacto" class="btn btn-primary">Marcar sessão estratégica gratuita</a>
+          <a href="#servicos" class="btn btn-outline">Ver serviços</a>
+        </div>
+        <div class="hero-meta">
+          <span><strong>30 min</strong> de sessão sem compromisso</span>
+          <span><strong>Plano de acção</strong> com prioridades claras</span>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Benefícios rápidos">
+        <h2>Em que é que te ajudamos já este trimestre</h2>
+        <ul>
+          <li>Diagnóstico rápido ao Salesforce actual.</li>
+          <li>Mapeamento de processos comerciais e de serviço.</li>
+          <li>Automatização de tarefas manuais críticas.</li>
+          <li>Dashboards que a equipa comercial quer mesmo usar.</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Prova social -->
+  <section aria-labelledby="prova-social">
+    <div class="container">
+      <h2 class="section-title" id="prova-social">Empresas que já confiam na Impact Force</h2>
+      <p class="muted" style="margin-bottom: 1.4rem;">
+        Consultoria e projectos entregues em Portugal e noutros mercados europeus, com foco em equipas comerciais e de customer service.
+      </p>
+      <div class="logos-row">
+        <div class="logo-pill">Logo Cliente 1</div>
+        <div class="logo-pill">Logo Cliente 2</div>
+        <div class="logo-pill">Logo Cliente 3</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problema -->
+  <section aria-labelledby="problema">
+    <div class="container grid-3">
+      <div>
+        <h2 class="section-title" id="problema">Salesforce não está a entregar o retorno que esperavas?</h2>
+        <p class="muted">
+          Muitas equipas investem em Salesforce mas continuam com baixa adopção, dados espalhados e decisões tomadas “a olho”.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Dor 1</h3>
+        <p>Pouca adopção da equipa comercial e registos incompletos no CRM.</p>
+      </div>
+      <div class="card">
+        <h3>Dor 2</h3>
+        <p>Relatórios complexos que ninguém abre e falta de previsibilidade nas vendas.</p>
+      </div>
+      <div class="card">
+        <h3>Dor 3</h3>
+        <p>Processos manuais que podiam estar automatizados com fluxos e integrações.</p>
+      </div>
+      <div class="card">
+        <h3>Dor 4</h3>
+        <p>Dificuldade em ligar Salesforce ao resto do stack digital (marketing, ERP, suporte).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solução / Processo -->
+  <section id="processo" aria-labelledby="solucao">
+    <div class="container">
+      <h2 class="section-title" id="solucao">A abordagem Impact Force</h2>
+      <p class="muted" style="margin-bottom: 1.4rem;">
+        Um processo simples, em sprints curtos, focado em resultados tangíveis para as tuas equipas.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>1. Sessão estratégica</h3>
+          <p>Reunião online de 30 minutos para entender objectivos, desafios e contexto da tua empresa.</p>
+        </div>
+        <div class="card">
+          <h3>2. Diagnóstico & plano</h3>
+          <p>Análise ao teu Salesforce actual e desenho de um plano de acção com prioridades claras.</p>
+        </div>
+        <div class="card">
+          <h3>3. Implementação em sprints</h3>
+          <p>Execução técnica e funcional, formação da equipa e métricas de sucesso muito bem definidas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Serviços -->
+  <section id="servicos" aria-labelledby="servicos-titulo">
+    <div class="container">
+      <h2 class="section-title" id="servicos-titulo">Serviços Salesforce da Impact Force</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Implementação Salesforce</h3>
+          <p>Configuração inicial, desenho de objectos, campos e processos alinhados ao teu negócio B2B.</p>
+        </div>
+        <div class="card">
+          <h3>Optimização & Automação</h3>
+          <p>Revisão de fluxos, regras de atribuição, notificações e automatismos para reduzir tarefas manuais.</p>
+        </div>
+        <div class="card">
+          <h3>Integrações & Dados</h3>
+          <p>Conexão com marketing, ERP, suporte e melhorias de qualidade de dados para decisões com confiança.</p>
+        </div>
+        <div class="card">
+          <h3>Formação & Acompanhamento</h3>
+          <p>Formação prática para utilizadores finais e acompanhamento contínuo em ciclos mensais ou trimestrais.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testemunho simples -->
+  <section aria-labelledby="testemunhos">
+    <div class="container">
+      <h2 class="section-title" id="testemunhos">Resultados em equipas reais</h2>
+      <div class="card">
+        <p class="muted">
+          “Em poucas semanas passámos de dashboards confusos para uma visão clara do pipeline. A equipa comercial finalmente sente que o Salesforce
+          trabalha a seu favor.”
+        </p>
+        <p style="margin-top: 0.8rem; font-size: 0.85rem;">
+          <strong>Nome do Cliente</strong> – Cargo, Empresa
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre -->
+  <section id="sobre" aria-labelledby="sobre-titulo">
+    <div class="container">
+      <h2 class="section-title" id="sobre-titulo">Quem é a Impact Force</h2>
+      <p class="muted">
+        A Impact Force é uma consultoria focada em Salesforce para empresas B2B em Portugal, combinando experiência técnica com conhecimento de negócio.
+        O objectivo é simples: transformar o teu Salesforce num verdadeiro motor de crescimento.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" aria-labelledby="faq-titulo">
+    <div class="container">
+      <h2 class="section-title" id="faq-titulo">Perguntas frequentes</h2>
+
+      <details>
+        <summary>Trabalham apenas com empresas em Portugal?</summary>
+        <p>
+          O foco principal são empresas com operação em Portugal, mas também é possível apoiar equipas europeias em modelo remoto.
+        </p>
+      </details>
+
+      <details>
+        <summary>Qual é o tamanho mínimo de empresa com que trabalham?</summary>
+        <p>
+          Tipicamente trabalhamos com equipas comerciais a partir de 5–10 utilizadores de Salesforce e necessidades claras de crescimento.
+        </p>
+      </details>
+
+      <details>
+        <summary>Já temos Salesforce implementado, precisam de recomeçar do zero?</summary>
+        <p>
+          Não. Muitos projectos começam com uma auditoria ao que já existe e um plano de optimização faseado, sem intervir em tudo ao mesmo tempo.
+        </p>
+      </details>
+
+      <details>
+        <summary>Quanto tempo demora um projecto típico?</summary>
+        <p>
+          Depende do escopo, mas muitas melhorias iniciais são entregues em ciclos de 4 a 8 semanas, com impacto visível nas equipas.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Contacto / CTA final -->
+  <section id="contacto" aria-labelledby="contacto-titulo">
+    <div class="container">
+      <h2 class="section-title" id="contacto-titulo">Pronto para tirar mais partido do teu Salesforce?</h2>
+      <p class="muted" style="margin-bottom: 1.2rem;">
+        Deixa os teus contactos e agenda uma sessão estratégica gratuita de 30 minutos.
+      </p>
+      <form action="#" method="post" class="card" style="max-width: 520px;">
+        <div style="display: grid; gap: 0.9rem;">
+          <div>
+            <label for="nome" style="font-size: 0.85rem;">Nome</label><br />
+            <input id="nome" name="nome" type="text" required
+                   style="width: 100%; margin-top: 0.3rem; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--cor-borda); background: #020617; color: var(--cor-texto); font-size: 0.9rem;">
+          </div>
+          <div>
+            <label for="email" style="font-size: 0.85rem;">Email profissional</label><br />
+            <input id="email" name="email" type="email" required
+                   style="width: 100%; margin-top: 0.3rem; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--cor-borda); background: #020617; color: var(--cor-texto); font-size: 0.9rem;">
+          </div>
+          <div>
+            <label for="empresa" style="font-size: 0.85rem;">Empresa</label><br />
+            <input id="empresa" name="empresa" type="text"
+                   style="width: 100%; margin-top: 0.3rem; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--cor-borda); background: #020617; color: var(--cor-texto); font-size: 0.9rem;">
+          </div>
+          <div>
+            <label for="mensagem" style="font-size: 0.85rem;">Contexto (opcional)</label><br />
+            <textarea id="mensagem" name="mensagem" rows="3"
+                      style="width: 100%; margin-top: 0.3rem; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--cor-borda); background: #020617; color: var(--cor-texto); font-size: 0.9rem; resize: vertical;"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Quero marcar a sessão</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <span>© <span id="ano"></span> Impact Force. Todos os direitos reservados.</span>
+    <span>Consultoria Salesforce · Portugal</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("ano").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
