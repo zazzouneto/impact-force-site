@@ -563,41 +563,79 @@
     </div>
   </section>
 
-  <!-- Contacto / CTA final -->
-  <section id="contacto" aria-labelledby="contacto-titulo">
-    <div class="container">
-      <h2 class="section-title" id="contacto-titulo">Pronto para tirar mais partido do teu Salesforce?</h2>
-      <p class="muted" style="margin-bottom: 1.2rem;">
-        Deixa os teus contactos e agenda uma sessão estratégica gratuita de 30 minutos.
-      </p>
-      <form action="#" method="post" class="card" style="max-width: 520px;">
-        <div style="display: grid; gap: 0.9rem;">
-          <div>
-            <label for="nome" style="font-size: 0.85rem;">Nome</label><br />
-            <input id="nome" name="nome" type="text" required
-                   style="width: 100%; margin-top: 0.3rem; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--cor-borda); background: #020617; color: var(--cor-texto); font-size: 0.9rem;">
-          </div>
-          <div>
-            <label for="email" style="font-size: 0.85rem;">Email profissional</label><br />
-            <input id="email" name="email" type="email" required
-                   style="width: 100%; margin-top: 0.3rem; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--cor-borda); background: #020617; color: var(--cor-texto); font-size: 0.9rem;">
-          </div>
-          <div>
-            <label for="empresa" style="font-size: 0.85rem;">Empresa</label><br />
-            <input id="empresa" name="empresa" type="text"
-                   style="width: 100%; margin-top: 0.3rem; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--cor-borda); background: #020617; color: var(--cor-texto); font-size: 0.9rem;">
-          </div>
-          <div>
-            <label for="mensagem" style="font-size: 0.85rem;">Contexto (opcional)</label><br />
-            <textarea id="mensagem" name="mensagem" rows="3"
-                      style="width: 100%; margin-top: 0.3rem; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--cor-borda); background: #020617; color: var(--cor-texto); font-size: 0.9rem; resize: vertical;"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Quero marcar a sessão</button>
+ <!-- Contacto / CTA final -->
+<section id="contacto" aria-labelledby="contacto-titulo">
+  <div class="container">
+    <h2 class="section-title" id="contacto-titulo">Pronto para tirar mais partido do teu Salesforce?</h2>
+    <p class="muted" style="margin-bottom: 1.2rem;">
+      Deixa os teus contactos e agenda uma sessão estratégica gratuita de 30 minutos.
+    </p>
+    
+    <form 
+      action="https://formspree.io/f/xaqborlg" 
+      method="POST" 
+      class="card" 
+      style="max-width: 520px;"
+    >
+      <div style="display: grid; gap: 0.9rem;">
+        <div>
+          <label for="nome" style="font-size: 0.85rem; display: block; margin-bottom: 0.3rem;">Nome completo</label>
+          <input 
+            id="nome" 
+            name="nome" 
+            type="text" 
+            required
+            placeholder="João Silva"
+            style="width: 100%; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--cor-borda); background: #020617; color: var(--cor-texto); font-size: 0.9rem;"
+          >
         </div>
-      </form>
-    </div>
-  </section>
-</main>
+        
+        <div>
+          <label for="email" style="font-size: 0.85rem; display: block; margin-bottom: 0.3rem;">Email profissional</label>
+          <input 
+            id="email" 
+            name="email" 
+            type="email" 
+            required
+            placeholder="joao@empresa.pt"
+            style="width: 100%; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--cor-borda); background: #020617; color: var(--cor-texto); font-size: 0.9rem;"
+          >
+        </div>
+        
+        <div>
+          <label for="empresa" style="font-size: 0.85rem; display: block; margin-bottom: 0.3rem;">Empresa</label>
+          <input 
+            id="empresa" 
+            name="empresa" 
+            type="text"
+            placeholder="Nome da empresa"
+            style="width: 100%; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--cor-borda); background: #020617; color: var(--cor-texto); font-size: 0.9rem;"
+          >
+        </div>
+        
+        <div>
+          <label for="mensagem" style="font-size: 0.85rem; display: block; margin-bottom: 0.3rem;">Contexto (opcional)</label>
+          <textarea 
+            id="mensagem" 
+            name="mensagem" 
+            rows="3"
+            placeholder="Conta-nos o que precisas no Salesforce..."
+            style="width: 100%; padding: 0.55rem 0.7rem; border-radius: 8px; border: 1px solid var(--cor-borda); background: #020617; color: var(--cor-texto); font-size: 0.9rem; resize: vertical;"
+          ></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">
+          📅 Quero marcar a sessão gratuita
+        </button>
+        
+        <p style="font-size: 0.75rem; color: var(--cor-texto-sec); margin: 0.5rem 0 0 0; text-align: center;">
+          ✅ Envio seguro • Resposta em 24h
+        </p>
+      </div>
+    </form>
+  </div>
+</section>
+
 
   <section aria-labelledby="certificações">
   <div class="container">
@@ -625,3 +663,4 @@
 </script>
 </body>
 </html>
+
